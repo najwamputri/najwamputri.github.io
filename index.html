@@ -166,8 +166,20 @@
                         Industrial Designer based in Surabaya.
                     </h1>
                     <p class="text-lg lg:text-xl text-zinc-600 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed reveal delay-300">
-                        I'm a 3rd-year Industrial Design student at ITS specializing in contemporary furniture. I transform user needs into ergonomic, manufacturable designs, focusing on material efficiency and rapid prototyping.
+                        I'm a <span id="academic-year"></span> Industrial Design student at ITS specializing in contemporary furniture. I transform user needs into ergonomic, manufacturable designs, focusing on material efficiency and rapid prototyping.
                     </p>
+                    <script>
+                        (function() {
+                            const startDate = new Date(2023, 7, 1); // August 2023 (0-indexed month)
+                            const now = new Date();
+                            const diffYears = now.getFullYear() - startDate.getFullYear();
+                            const isPastMonth = now.getMonth() >= startDate.getMonth();
+                            const year = diffYears + (isPastMonth ? 1 : 0);
+                            const suffixes = ["th", "st", "nd", "rd"];
+                            const suffix = (year % 10 < 4 && Math.floor(year / 10) !== 1) ? suffixes[year % 10] : suffixes[0];
+                            document.getElementById('academic-year').textContent = year + suffix + "-year";
+                        })();
+                    </script>
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 reveal delay-400">
                         <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 bg-primary text-white font-medium rounded-full hover:bg-orange-600 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 spring-transition btn-spring">
                             View My Portfolio
@@ -230,7 +242,7 @@
                     <h3 class="text-xl font-bold mb-4 text-white font-serif">Creative & Media</h3>
                     <ul class="space-y-3 text-zinc-400">
                         <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-primary"></i> Photography & Videography</li>
-                        <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-primary"></i> Canva & CapCut</li>
+                        <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-primary"></i> Canva, CapCut, & Alight Motion</li>
                     </ul>
                 </div>
             </div>
@@ -353,15 +365,15 @@
                 <!-- Project 2 -->
                 <div class="group rounded-3xl overflow-hidden border border-zinc-700/50 bg-dark-card hover-lift flex flex-col reveal-scale delay-200">
                     <div class="relative h-72 overflow-hidden">
-                        <img src="./k-pop-collectibles.PNG" alt="K-Pop Collectibles Storage" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="./k-pop-collectibles.PNG" alt="Sidepool Semi Outdoor Chair" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-full text-primary border border-primary/30">
                             Aug 2024 - Dec 2024
                         </div>
                     </div>
                     <div class="p-8 flex flex-col flex-grow">
-                        <h3 class="text-2xl font-bold font-serif mb-3">K-Pop Collectibles Storage</h3>
+                        <h3 class="text-2xl font-bold font-serif mb-3">Sidepool Semi Outdoor Chair</h3>
                         <p class="text-zinc-400 leading-relaxed mb-6 flex-grow">
-                            Functional storage prototype fabricated from scratch using workshop machinery. Designed around collector pain points to display and protect delicate albums and merchandise elegantly.
+                            Driven by the psychology of enveloping comfort, this concept introduces a 'hugging' upholstery typology that secures the user in a protective sanctuary. It optimizes the transition from water to rest through anti-microbial, moisture wicking layers that prevent fungal growth, ensuring the seat remains pristine after pool use. The ergonomic curvature is specifically engineered for prolonged gadget interaction, bridging the gap between high-fidelity plushness and extreme environmental resilience.
                         </p>
                         <div class="flex gap-2 flex-wrap">
                             <span class="px-3 py-1 text-xs font-medium rounded-full bg-zinc-800 text-zinc-300">Fabrication</span>
