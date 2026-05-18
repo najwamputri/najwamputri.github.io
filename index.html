@@ -113,20 +113,8 @@
         .delay-500 { transition-delay: 500ms; }
 
         .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), padding 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .accordion-item.active .accordion-content {
-            max-height: 250px; /* Adjust based on content */
             padding-top: 1rem;
             padding-bottom: 1rem;
-        }
-        .accordion-icon {
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .accordion-item.active .accordion-icon {
-            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -395,35 +383,32 @@
 
             <div class="space-y-4">
                 <!-- FAQ 1 -->
-                <div class="accordion-item bg-white border border-zinc-200 rounded-2xl shadow-sm overflow-hidden transition-all hover:border-zinc-300 reveal delay-100">
-                    <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none" onclick="toggleAccordion(this)">
+                <div class="bg-white border border-zinc-200 rounded-2xl shadow-sm overflow-hidden reveal delay-100">
+                    <div class="w-full px-6 py-5 flex justify-between items-center text-left">
                         <span class="font-bold text-lg text-zinc-900 font-serif">What languages do you speak?</span>
-                        <i class="ph ph-caret-down text-xl text-zinc-500 accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content px-6 bg-zinc-50/50">
-                        <p class="text-zinc-600 pb-2">I am fluent in Indonesian and English, and I also have basic proficiency in Mandarin (HSK 2).</p>
+                    </div>
+                    <div class="px-6 bg-zinc-50/50 pb-5">
+                        <p class="text-zinc-600">I am fluent in Indonesian and English, and I also have basic proficiency in Mandarin (HSK 2).</p>
                     </div>
                 </div>
 
                 <!-- FAQ 2 -->
-                <div class="accordion-item bg-white border border-zinc-200 rounded-2xl shadow-sm overflow-hidden transition-all hover:border-zinc-300 reveal delay-200">
-                    <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none" onclick="toggleAccordion(this)">
+                <div class="bg-white border border-zinc-200 rounded-2xl shadow-sm overflow-hidden reveal delay-200">
+                    <div class="w-full px-6 py-5 flex justify-between items-center text-left">
                         <span class="font-bold text-lg text-zinc-900 font-serif">What is your design approach?</span>
-                        <i class="ph ph-caret-down text-xl text-zinc-500 accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content px-6 bg-zinc-50/50">
-                        <p class="text-zinc-600 pb-2">Dedicated to in-depth anthropometric research and field surveys. I believe in creating functional, user-centered furniture that not only looks beautiful but solves real human problems efficiently.</p>
+                    </div>
+                    <div class="px-6 bg-zinc-50/50 pb-5">
+                        <p class="text-zinc-600">Dedicated to in-depth anthropometric research and field surveys. I believe in creating functional, user-centered furniture that not only looks beautiful but solves real human problems efficiently.</p>
                     </div>
                 </div>
 
                 <!-- FAQ 3 -->
-                <div class="accordion-item bg-white border border-zinc-200 rounded-2xl shadow-sm overflow-hidden transition-all hover:border-zinc-300 reveal delay-300">
-                    <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none" onclick="toggleAccordion(this)">
+                <div class="bg-white border border-zinc-200 rounded-2xl shadow-sm overflow-hidden reveal delay-300">
+                    <div class="w-full px-6 py-5 flex justify-between items-center text-left">
                         <span class="font-bold text-lg text-zinc-900 font-serif">Are you available for freelance work?</span>
-                        <i class="ph ph-caret-down text-xl text-zinc-500 accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content px-6 bg-zinc-50/50">
-                        <p class="text-zinc-600 pb-2">Yes, I am open to exciting freelance projects and collaborations. Feel free to reach out via the contact section below to discuss your ideas!</p>
+                    </div>
+                    <div class="px-6 bg-zinc-50/50 pb-5">
+                        <p class="text-zinc-600">Yes, I am open to exciting freelance projects and collaborations. Feel free to reach out via the contact section below to discuss your ideas!</p>
                     </div>
                 </div>
             </div>
@@ -470,21 +455,6 @@
 
     <!-- Vanilla JS Interactions -->
     <script>
-        // FAQ Accordion
-        function toggleAccordion(button) {
-            const item = button.parentElement;
-            
-            // Close all others
-            document.querySelectorAll('.accordion-item').forEach(otherItem => {
-                if(otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
-                }
-            });
-
-            // Toggle current
-            item.classList.toggle('active');
-        }
-
         // Mobile Menu Toggle
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
