@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Najwa | Industrial Designer</title>
+    <meta name="description" content="Portfolio of Najwa Maharani Putri, an Industrial Designer based in Surabaya specializing in contemporary furniture.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        primary: '#F97316',
+                        dark: '#18181b', // zinc-900
+                        'dark-card': '#27272a', // zinc-800
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm39 39V1H1v38h38z' fill='%23e5e7eb' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles & Animations */
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Organic shape mask for portrait */
+        .organic-shape {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morph 8s ease-in-out infinite;
+        }
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+        /* Micro Interactions & Spring Physics */
+        .spring-transition {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-spring:active {
+            transform: scale(0.92);
+        }
+
+        .hover-lift { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .dark-section .hover-lift:hover { box-shadow: 0 15px 30px -5px rgba(249, 115, 22, 0.25); }
+        
+        /* Waterfall Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .reveal.active, .reveal-left.active, .reveal-right.active, .reveal-scale.active {
+            opacity: 1;
+            transform: translate(0) scale(1);
+        }
+
+        /* Stagger Delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+        .delay-500 { transition-delay: 500ms; }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), padding 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 250px; /* Adjust based on content */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .accordion-icon {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-white text-zinc-800 antialiased selection:bg-primary selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-zinc-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-serif font-bold text-zinc-900 tracking-tight">N<span class="text-primary">.</span></a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-sm font-medium hover:text-primary transition-colors">Home</a>
+                <a href="#expertise" class="text-sm font-medium hover:text-primary transition-colors">Expertise</a>
+                <a href="#experience" class="text-sm font-medium hover:text-primary transition-colors">Experience</a>
+                <a href="#projects" class="text-sm font-medium hover:text-primary transition-colors">Projects</a>
+                <a href="#faq" class="text-sm font-medium hover:text-primary transition-colors">FAQ</a>
+            </div>
+            
+            <a href="#contact" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-orange-600 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 spring-transition btn-spring">
+                Hire Me
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-zinc-900" id="mobile-menu-btn">
+                <i class="ph ph-list text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="md:hidden hidden bg-white border-t border-zinc-100 absolute w-full" id="mobile-menu">
+            <div class="px-6 py-4 flex flex-col space-y-4 shadow-xl">
+                <a href="#home" class="text-sm font-medium mobile-link">Home</a>
+                <a href="#expertise" class="text-sm font-medium mobile-link">Expertise</a>
+                <a href="#experience" class="text-sm font-medium mobile-link">Experience</a>
+                <a href="#projects" class="text-sm font-medium mobile-link">Projects</a>
+                <a href="#faq" class="text-sm font-medium mobile-link">FAQ</a>
+                <a href="#contact" class="text-sm font-medium text-primary mobile-link">Hire Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-white bg-grid-pattern overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-3/5 text-center lg:text-left">
+                    <p class="text-lg font-medium text-zinc-500 mb-4 tracking-wide reveal delay-100">Hello! I'm <span class="text-primary font-bold">Najwa</span>,</p>
+                    <h1 class="text-5xl lg:text-7xl font-serif font-bold text-zinc-900 leading-tight mb-6 reveal delay-200">
+                        Industrial Designer based in Surabaya.
+                    </h1>
+                    <p class="text-lg lg:text-xl text-zinc-600 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed reveal delay-300">
+                        I'm a 3rd-year Industrial Design student at ITS specializing in contemporary furniture. I transform user needs into ergonomic, manufacturable designs, focusing on material efficiency and rapid prototyping.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 reveal delay-400">
+                        <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 bg-primary text-white font-medium rounded-full hover:bg-orange-600 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 spring-transition btn-spring">
+                            View My Portfolio
+                        </a>
+                        <a href="#" class="w-full sm:w-auto px-8 py-3.5 bg-white text-zinc-800 font-medium rounded-full border-2 border-zinc-200 hover:border-zinc-900 spring-transition btn-spring">
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full lg:w-2/5 flex justify-center lg:justify-end">
+                    <div class="relative w-72 h-72 lg:w-[400px] lg:h-[400px] reveal-scale delay-300">
+                        <div class="absolute inset-0 bg-primary/20 organic-shape blur-2xl"></div>
+                        <!-- We use profile.jpg assuming the user saves the attached image as profile.jpg in the same directory -->
+                        <img src="./profile.jpeg" alt="Najwa Maharani Putri" class="relative w-full h-full object-cover organic-shape shadow-2xl border-4 border-white" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Expertise Section -->
+    <section id="expertise" class="py-24 bg-dark text-white dark-section relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">My <span class="text-primary">Expertise</span></h2>
+                <p class="text-zinc-400 max-w-2xl mx-auto text-lg">A blend of technical precision and creative vision to bring ideas to life.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-dark-card p-8 rounded-3xl border border-zinc-700/50 hover-lift group reveal delay-100">
+                    <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <i class="ph ph-cube text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white font-serif">Design & 3D Modeling</h3>
+                    <ul class="space-y-3 text-zinc-400">
+                        <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-primary"></i> Fusion 360</li>
+                        <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-primary"></i> Blender (Lighting)</li>
+                    </ul>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-dark-card p-8 rounded-3xl border border-zinc-700/50 hover-lift group reveal delay-200">
+                    <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <i class="ph ph-printer-3d text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white font-serif">Prototyping & Manufacturing</h3>
+                    <ul class="space-y-3 text-zinc-400">
+                        <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-primary"></i> 3D Printing (FDM/SLA)</li>
+                        <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-primary"></i> Woodworking & CNC</li>
+                        <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-primary"></i> Rapid Prototyping</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-dark-card p-8 rounded-3xl border border-zinc-700/50 hover-lift group reveal delay-300">
+                    <div class="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <i class="ph ph-camera text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white font-serif">Creative & Media</h3>
+                    <ul class="space-y-3 text-zinc-400">
+                        <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-primary"></i> Photography & Videography</li>
+                        <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-primary"></i> Canva & CapCut</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Education & Work Experience -->
+    <section id="experience" class="py-24 bg-white bg-grid-pattern">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <!-- Education -->
+                <div>
+                    <div class="flex items-center gap-4 mb-10 reveal-left delay-100">
+                        <i class="ph-fill ph-graduation-cap text-4xl text-primary"></i>
+                        <h2 class="text-4xl font-serif font-bold text-zinc-900">Education</h2>
+                    </div>
+                    <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-zinc-300 before:to-transparent">
+                        
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal-left delay-200">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-primary text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 ml-0 md:ml-0 absolute left-0 md:left-1/2 -translate-x-1/2">
+                                <i class="ph-fill ph-student text-xl"></i>
+                            </div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl bg-white shadow-xl shadow-zinc-200/50 border border-zinc-100 ml-16 md:ml-0 hover-lift">
+                                <div class="flex flex-col mb-2">
+                                    <span class="text-sm text-primary font-semibold tracking-wider uppercase mb-1">Aug 2023 - Present</span>
+                                    <h3 class="font-bold text-xl text-zinc-900 font-serif">Sepuluh Nopember Institute of Technology (ITS)</h3>
+                                </div>
+                                <div class="text-zinc-600">Industrial Design</div>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal-left delay-300">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-zinc-200 text-zinc-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 ml-0 md:ml-0 absolute left-0 md:left-1/2 -translate-x-1/2">
+                                <i class="ph-fill ph-books text-xl"></i>
+                            </div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl bg-white shadow-xl shadow-zinc-200/50 border border-zinc-100 ml-16 md:ml-0 hover-lift">
+                                <div class="flex flex-col mb-2">
+                                    <span class="text-sm text-zinc-500 font-semibold tracking-wider uppercase mb-1">Jul 2020 - May 2023</span>
+                                    <h3 class="font-bold text-xl text-zinc-900 font-serif">SMAN 9 Surabaya</h3>
+                                </div>
+                                <div class="text-zinc-600">Science Major</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div>
+                    <div class="flex items-center gap-4 mb-10 reveal-right delay-100">
+                        <i class="ph-fill ph-briefcase text-4xl text-primary"></i>
+                        <h2 class="text-4xl font-serif font-bold text-zinc-900">Experience</h2>
+                    </div>
+                    <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-zinc-300 before:to-transparent">
+                        
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal-right delay-200">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-primary text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 ml-0 md:ml-0 absolute left-0 md:left-1/2 -translate-x-1/2">
+                                <i class="ph-fill ph-monitor-play text-xl"></i>
+                            </div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl bg-white shadow-xl shadow-zinc-200/50 border border-zinc-100 ml-16 md:ml-0 hover-lift">
+                                <div class="flex flex-col mb-2">
+                                    <span class="text-sm text-primary font-semibold tracking-wider uppercase mb-1">Mar 2025 - Apr 2026</span>
+                                    <h3 class="font-bold text-xl text-zinc-900 font-serif">Multimedia & Info Staff</h3>
+                                </div>
+                                <div class="text-zinc-600">BEM ITS</div>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal-right delay-300">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-zinc-200 text-zinc-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 ml-0 md:ml-0 absolute left-0 md:left-1/2 -translate-x-1/2">
+                                <i class="ph-fill ph-lightbulb text-xl"></i>
+                            </div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl bg-white shadow-xl shadow-zinc-200/50 border border-zinc-100 ml-16 md:ml-0 hover-lift">
+                                <div class="flex flex-col mb-2">
+                                    <span class="text-sm text-zinc-500 font-semibold tracking-wider uppercase mb-1">May 2024 - Apr 2025</span>
+                                    <h3 class="font-bold text-xl text-zinc-900 font-serif">Entrepreneurship Agency Staff</h3>
+                                </div>
+                                <div class="text-zinc-600">BEM FDKBD ITS</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Projects / Portfolio -->
+    <section id="projects" class="py-24 bg-dark text-white dark-section">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">Let's Have a Look at my <span class="text-primary">Portfolio</span></h2>
+                <p class="text-zinc-400 max-w-2xl mx-auto text-lg">Showcasing my journey in functional design and creative problem-solving.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Project 1 -->
+                <div class="group rounded-3xl overflow-hidden border border-zinc-700/50 bg-dark-card hover-lift flex flex-col reveal-scale delay-100">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="./cat-cafe.jpeg" alt="Cat Café Furniture Design" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-full text-primary border border-primary/30">
+                            Feb 2025 - Jun 2025
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold font-serif mb-3">Cat Café Furniture Design</h3>
+                        <p class="text-zinc-400 leading-relaxed mb-6 flex-grow">
+                            Ergonomic cafe chair tailored for multi-species interaction based on behavioral observations and anthropometric research. Integrates comfortable human seating with hidden resting spots for felines.
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-zinc-800 text-zinc-300">Ergonomics</span>
+                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-zinc-800 text-zinc-300">Woodworking</span>
+                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-zinc-800 text-zinc-300">Research</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group rounded-3xl overflow-hidden border border-zinc-700/50 bg-dark-card hover-lift flex flex-col reveal-scale delay-200">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="./k-pop-collectibles.PNG" alt="K-Pop Collectibles Storage" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-full text-primary border border-primary/30">
+                            Aug 2024 - Dec 2024
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold font-serif mb-3">K-Pop Collectibles Storage</h3>
+                        <p class="text-zinc-400 leading-relaxed mb-6 flex-grow">
+                            Functional storage prototype fabricated from scratch using workshop machinery. Designed around collector pain points to display and protect delicate albums and merchandise elegantly.
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-zinc-800 text-zinc-300">Fabrication</span>
+                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-zinc-800 text-zinc-300">CNC</span>
+                            <span class="px-3 py-1 text-xs font-medium rounded-full bg-zinc-800 text-zinc-300">Product Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FAQ Section -->
+    <section id="faq" class="py-24 bg-white bg-grid-pattern">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">Questions? <span class="text-primary">Look here.</span></h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="accordion-item bg-white border border-zinc-200 rounded-2xl shadow-sm overflow-hidden transition-all hover:border-zinc-300 reveal delay-100">
+                    <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none" onclick="toggleAccordion(this)">
+                        <span class="font-bold text-lg text-zinc-900 font-serif">What languages do you speak?</span>
+                        <i class="ph ph-caret-down text-xl text-zinc-500 accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-zinc-50/50">
+                        <p class="text-zinc-600 pb-2">I am fluent in Indonesian and English, and I also have basic proficiency in Mandarin (HSK 2).</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="accordion-item bg-white border border-zinc-200 rounded-2xl shadow-sm overflow-hidden transition-all hover:border-zinc-300 reveal delay-200">
+                    <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none" onclick="toggleAccordion(this)">
+                        <span class="font-bold text-lg text-zinc-900 font-serif">What is your design approach?</span>
+                        <i class="ph ph-caret-down text-xl text-zinc-500 accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-zinc-50/50">
+                        <p class="text-zinc-600 pb-2">Dedicated to in-depth anthropometric research and field surveys. I believe in creating functional, user-centered furniture that not only looks beautiful but solves real human problems efficiently.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="accordion-item bg-white border border-zinc-200 rounded-2xl shadow-sm overflow-hidden transition-all hover:border-zinc-300 reveal delay-300">
+                    <button class="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none" onclick="toggleAccordion(this)">
+                        <span class="font-bold text-lg text-zinc-900 font-serif">Are you available for freelance work?</span>
+                        <i class="ph ph-caret-down text-xl text-zinc-500 accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-zinc-50/50">
+                        <p class="text-zinc-600 pb-2">Yes, I am open to exciting freelance projects and collaborations. Feel free to reach out via the contact section below to discuss your ideas!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Contact / Footer -->
+    <section id="contact" class="pt-24 pb-10 bg-dark text-white border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+                <!-- Contact Info -->
+                <div class="reveal-left delay-100 lg:col-span-2 text-center">
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-6">Let's <span class="text-primary">Connect</span> & Collaborate</h2>
+                    <p class="text-zinc-400 mb-10 text-lg">Have a project in mind or just want to say hi? I'd love to hear from you.</p>
+                    
+                    <div class="flex flex-col md:flex-row justify-center gap-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center shrink-0">
+                                <i class="ph ph-phone text-2xl text-primary"></i>
+                            </div>
+                            <a href="tel:+6285257172635" class="text-lg text-zinc-200 hover:text-primary transition-colors">+62 852-5717-2635</a>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center shrink-0">
+                                <i class="ph ph-linkedin-logo text-2xl text-primary"></i>
+                            </div>
+                            <a href="https://linkedin.com/in/awajjna" target="_blank" rel="noopener noreferrer" class="text-lg text-zinc-200 hover:text-primary transition-colors">linkedin.com/in/awajjna</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="pt-8 border-t border-zinc-800 text-center flex flex-col md:flex-row justify-between items-center gap-4 reveal delay-300">
+                <a href="#" class="text-xl font-serif font-bold text-white tracking-tight">N<span class="text-primary">.</span></a>
+                <p class="text-zinc-500 text-sm">Copyright &copy; 2026 Najwa Maharani Putri. All Rights Reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:bg-primary hover:text-white transition-all"><i class="ph-fill ph-instagram-logo"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:bg-primary hover:text-white transition-all"><i class="ph-fill ph-behance-logo"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vanilla JS Interactions -->
+    <script>
+        // FAQ Accordion
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            
+            // Close all others
+            document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                if(otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+
+            // Toggle current
+            item.classList.toggle('active');
+        }
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Navbar blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+
+        // Intersection Observer for Scroll Reveals (Waterfall / Spring Physics)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: Stop observing once revealed
+                    // observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
